@@ -1,0 +1,233 @@
+@mixin title {
+  display: inline-block;
+  color: $text-secondary;
+  background-color: $text-bg;
+  box-shadow: 1px 1px 5px 0px #333;
+}
+
+@mixin card {
+  background-color: $bg-main;
+  box-shadow: 1px 1px 3px 1px #bbb;
+}
+
+@mixin link {
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  margin: .25rem 0;
+  height: 1rem;
+  padding: .3rem;
+  cursor: pointer;
+  transition: background .8s ease-in-out;
+  position: relative;
+  overflow-x: hidden;
+}
+
+@mixin link-decoration {
+
+  &--text {
+    color: $bg-secondary;
+    z-index: 3;
+    position: absolute;
+    top: .25rem;
+    left: .25rem;
+    transition: color .3s ease-in-out;
+  }
+
+  &--gradient {
+    width: 150%;
+    height: 100%;
+    content: "";
+    top: 0;
+    left: 0;
+    position: absolute;
+    background: linear-gradient(to right, #000 0%, #333 60%, #666 100%);
+    z-index: 2;
+    transition: background .3s ease-in-out;
+  }
+}
+
+$bg-main: #fff;
+$bg-secondary: #e1e1e1;
+
+$text-main: #000;
+$text-secondary: #fff;
+$text-bg: #000;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $bg-secondary;
+}
+
+.App {
+  min-height: 100vh;
+  max-height: 100%;
+  display: flex;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.langButton {
+  position: absolute;
+  top: .5rem;
+  right: 2rem;
+  display: flex;
+  align-items: center;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  @include card;
+  transition: box-shadow .3s ease-in;
+
+  &:hover {
+    box-shadow: 2px 2px 6px -2px #333;
+  }
+
+  &__icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+  }
+}
+
+.about {
+  padding: 1rem;
+  flex: 3 .5 20%;
+  border-right: 1px solid black;
+
+  &__name {
+    @include title;
+    display: block;
+    padding: 0.25rem;
+    margin-top: 0;
+  }
+
+  &__github {
+    @include link;
+    width: 50%;
+    min-width: 150px;
+    margin-top: 0;
+
+    @include link-decoration;
+  
+    &:hover {
+  
+      & > .about__github--gradient {
+        background-position: -60px;
+      }
+  
+      & > .about__github--text {
+        color: $text-secondary;
+      }
+    }
+  }
+
+  &__bio {
+    margin-top: 0.5rem;
+
+    &--paragraph {
+      margin: 0;
+      text-indent: .75rem;
+      margin-bottom: 0.2rem;
+    }
+  }
+}
+
+.projectsList {
+  flex: 1 3 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem;
+  
+  &__title {
+    @include title;
+    padding: 0.25rem;
+    margin-top: 0;
+  }
+}
+
+.projectCard {
+  width: 80%;
+  padding: .5rem 1rem;
+  margin-bottom: 1rem;
+  @include card;
+
+  &:last-of-type{
+    margin-bottom: 0;
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    @include title;
+    padding: 3px 5px;
+    margin: 0;
+  }
+
+  &__techs {
+    margin: 0;
+    margin-bottom: 1rem;
+    padding-left: 0;
+
+    &--title {
+      @include title;
+      margin: 0;
+      margin-bottom: 0.5rem;
+      padding: 0.25rem;
+    }
+
+    &--item {
+      list-style: none;
+      padding-left: 1rem;
+    }
+  }
+
+  &__link {
+    @include link;
+    width: 25%;
+    min-width: 115px;
+
+    @include link-decoration;
+  
+    &:hover {
+  
+      & > .projectCard__link--gradient {
+        background-position: -60px;
+      }
+  
+      & > .projectCard__link--text {
+        color: $text-secondary;
+      }
+    }
+    
+  //   &--text {
+  //     color: $bg-secondary;
+  //     z-index: 3;
+  //     position: absolute;
+  //     top: .25rem;
+  //     left: .25rem;
+  //     transition: color .3s ease-in-out;
+  //   }
+  
+  //   &--gradient {
+  //     width: 150%;
+  //     height: 100%;
+  //     content: "";
+  //     top: 0;
+  //     left: 0;
+  //     position: absolute;
+  //     background: linear-gradient(to right, #000 0%, #333 60%, #666 100%);
+  //     z-index: 2;
+  //     transition: background .3s ease-in-out;
+  //   } 
+  }  
+}
