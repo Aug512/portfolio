@@ -42,8 +42,14 @@ function App() {
     });
   }, [DB, lang])
 
+  const editLang = (lang, title) => {
+    setLang(lang)
+    document.title = title
+    document.documentElement.lang = lang.toLowerCase()
+  }
+
   const toggleLang = () => {
-    lang === 'RU' ? setLang('EN') : setLang('RU')
+    lang === 'RU' ? editLang('EN', 'Portfolio') : editLang('RU', 'Портфолио')
   }
 
   return (
