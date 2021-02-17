@@ -34,9 +34,9 @@ export default function About({ userData, lang }) {
       <div className='about__contacts'>
         <h3 className='contacts__title'>{currentDictionary.contacts}:</h3>
 
-        <ContactLink title={'+7 (965) 015-78-20'} href={`tel:+${userData.tel}`} />
-        <ContactLink title={'Telegram'} href={`https://tele.gs/${userData.nickname}`} />
-        <ContactLink title={'WhatsApp'} href={`https://wa.me/${userData.tel}`} />
+        <ContactLink title={'+7 (965) 015-78-20'} href={`tel:+${userData.contacts.tel}`} />
+        <ContactLink title={'Telegram'} href={`https://tele.gs/${userData.contacts.nickname}`} />
+        <ContactLink title={'WhatsApp'} href={`https://wa.me/${userData.contacts.tel}`} />
         <ContactLink title={'dmitriy.esko@gmail.com'} href='mailto:dmitriy.esko@gmail.com' />
 
       </div>
