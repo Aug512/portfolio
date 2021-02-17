@@ -21,6 +21,8 @@
   transition: background .8s ease-in-out;
   position: relative;
   overflow-x: hidden;
+  outline-width: 1px;
+  outline-color: #333;
 }
 
 @mixin link-decoration {
@@ -78,12 +80,14 @@ body {
   right: 2rem;
   display: flex;
   align-items: center;
-  outline: none;
   border: none;
   cursor: pointer;
   @include card;
   transition: box-shadow .3s ease-in;
-
+  outline-width: 1px;
+  outline-color: #333;
+  
+  &:active,
   &:hover {
     box-shadow: 2px 2px 6px -2px #333;
   }
@@ -97,7 +101,7 @@ body {
 
 .about {
   padding: 1rem;
-  flex: 3 .5 20%;
+  flex: 3 .5 30%;
   border-right: 1px solid black;
 
   &__name {
@@ -112,9 +116,11 @@ body {
     width: 50%;
     min-width: 150px;
     margin-top: 0;
+    margin-bottom: 1rem;
 
     @include link-decoration;
-  
+    
+    &:focus,
     &:hover {
   
       & > .about__github--gradient {
@@ -127,14 +133,37 @@ body {
     }
   }
 
-  &__bio {
-    margin-top: 0.5rem;
+  &__contacts {
+    @include card;
+    padding: 1rem;
 
-    &--paragraph {
-      margin: 0;
-      text-indent: .75rem;
-      margin-bottom: 0.2rem;
-    }
+    .contacts {
+
+      &__title {
+        margin-top: 0;
+      }
+  
+      &__link {
+        @include link;
+        display: block;
+        font-size: 0.8em;
+  
+        @include link-decoration;
+  
+        &:focus,
+        &:hover {
+    
+          & > .contacts__link--gradient {
+            background-position: -60px;
+          }
+      
+          & > .contacts__link--text {
+            color: $text-secondary;
+          }
+        }
+      }
+
+    } 
   }
 }
 
@@ -142,13 +171,14 @@ body {
   flex: 1 3 70%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
   padding: 1rem;
   
   &__title {
     @include title;
     padding: 0.25rem;
     margin-top: 0;
+    max-width: 65%;
   }
 }
 
@@ -198,6 +228,7 @@ body {
 
     @include link-decoration;
   
+    &:focus,
     &:hover {
   
       & > .projectCard__link--gradient {
@@ -208,26 +239,37 @@ body {
         color: $text-secondary;
       }
     }
-    
-  //   &--text {
-  //     color: $bg-secondary;
-  //     z-index: 3;
-  //     position: absolute;
-  //     top: .25rem;
-  //     left: .25rem;
-  //     transition: color .3s ease-in-out;
-  //   }
-  
-  //   &--gradient {
-  //     width: 150%;
-  //     height: 100%;
-  //     content: "";
-  //     top: 0;
-  //     left: 0;
-  //     position: absolute;
-  //     background: linear-gradient(to right, #000 0%, #333 60%, #666 100%);
-  //     z-index: 2;
-  //     transition: background .3s ease-in-out;
-  //   } 
   }  
+}
+
+@media (max-width: 700px) {
+  .App {
+    flex-direction: column;
+  }
+
+  .langButton {
+    right: 1rem;
+  }
+
+  .about {
+    padding-top: 3rem;
+    border-right: none;
+    border-bottom: 1px solid black;
+
+    .contacts__link {
+      max-width: 80%;
+      min-width: 200px;
+    }
+  }
+
+  .projectsList {
+
+    &__title {
+      max-width: 100%;
+    }
+  }
+
+  .projectCard {
+    width: auto;
+  }
 }

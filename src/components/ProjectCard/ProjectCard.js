@@ -2,6 +2,8 @@ import React from 'react'
 
 const ProjectCard = ({ data, lang }) => {
 
+  const additionalTabIndex = 3
+
   const getDictionary = (lang, dict) => {
     return (lang === 'RU') ? dict.RU : dict.EN
   }
@@ -30,11 +32,11 @@ const ProjectCard = ({ data, lang }) => {
         {data.techs.map((tech, index) => <li key={index} className='projectCard__techs--item'>-{tech}</li>)}
       </ul>
       <div className='projectCard__links'>
-        <a href={data.preview} target='_blank' className='projectCard__link'>
+        <a href={data.preview} target='_blank' className='projectCard__link' tabIndex={ data.id + additionalTabIndex }>
           <span className="projectCard__link--gradient" />
           <span className="projectCard__link--text">{currentDictionary.preview}</span>
         </a>
-        <a href={data.repo} target='_blank' className='projectCard__link'>
+        <a href={data.repo} target='_blank' className='projectCard__link' tabIndex={ data.id + additionalTabIndex }>
           <span className="projectCard__link--gradient" />
           <span className="projectCard__link--text">{currentDictionary.repo}</span>
         </a>

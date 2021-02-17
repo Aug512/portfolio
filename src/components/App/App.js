@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react'
-import firebase from 'firebase'
+import firebase from 'firebase/app'
 import 'firebase/database'
 import About from '../About/About'
 import ProjectsList from '../ProjectsList/ProjectList'
+import Loader from '../Loader/Loader'
 import '../../styles.scss'
 import flagRU from '../../img/russia.png'
 import flagUS from '../../img/united-states.png'
@@ -50,6 +51,7 @@ function App() {
       <button
         className='langButton'
         onClick={toggleLang}
+        tabIndex={ dbData.projects ? dbData.projects.length + 4 : -1}
       >
         {lang === 'RU'
           ? <><span>Switch to </span><img src={flagUS} alt='EN' className='langButton__icon' /></>
@@ -57,7 +59,7 @@ function App() {
         }
       </button>
       {loader
-        ? <p>Loading...</p>
+        ? <Loader style={{alignSelf: 'center', justifySelf: 'center'}}/>
         : <>
           <About userData={dbData.user} lang={lang}/>
           <ProjectsList projects={dbData.projects} lang={lang} />
